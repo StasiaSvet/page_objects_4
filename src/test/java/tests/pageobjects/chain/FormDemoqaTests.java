@@ -1,16 +1,16 @@
-package tests.chain;
+package tests.pageobjects.chain;
 
 import org.junit.jupiter.api.Test;
 import tests.TestBase;
 
 public class FormDemoqaTests extends TestBase {
-    FormDemoqa formDemoqa;
+    FormDemoqaPage formDemoqaPage;
 
     @Test
     void successfulFillFormTest() {
-        formDemoqa = new FormDemoqa();
+        formDemoqaPage = new FormDemoqaPage();
 
-        formDemoqa.openPage()
+        formDemoqaPage.openPage()
                 .fillInForm()
                 .birthData()
                 .submitForm()

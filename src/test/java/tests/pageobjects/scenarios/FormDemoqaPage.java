@@ -1,4 +1,4 @@
-package tests.scenarios;
+package tests.pageobjects.scenarios;
 
 import com.github.javafaker.Faker;
 
@@ -6,15 +6,14 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static utils.RandomUtils.*;
 
-public class FormDemoqa {
+public class FormDemoqaPage {
     Faker faker = new Faker();
 
-    String firstName = faker.name().fullName(),
+    String firstName = faker.name().firstName(),
             lastName = faker.name().lastName(),
             email = faker.internet().emailAddress(),
-            userNumber = faker.phoneNumber().phoneNumber(),
+            userNumber = faker.numerify("##########"),
             dayOfBirth = "02",
             monthOfBirth = "April",
             yearOfBirth = "1986",
@@ -25,28 +24,22 @@ public class FormDemoqa {
             city = "Jaiselmer";
 
     public void openPage() {
-        //---Open the page
         open("https://demoqa.com/automation-practice-form");
-
     }
 
     public void fillInForm() {
-
         //---Data input
         $("#firstName").val(firstName);
         $("#lastName").val(lastName);
         $("#userEmail").val(email);
         $(byText("Male")).click();
         $("#userNumber").val(userNumber);
-
         //---Subjects
         $("#subjectsInput").setValue(subjectInput1).pressEnter();
         $("#subjectsInput").setValue(subjectInput2).pressEnter();
-
         //---Hobby
         $(byText("Sports")).click();
         $(byText("Reading")).click();
-
         //---Address
         $("#currentAddress").setValue(cAddress);
         $("#state").scrollIntoView(true);
@@ -54,7 +47,6 @@ public class FormDemoqa {
         $(byText(state)).click();
         $("#city").click();
         $(byText(city)).click();
-
         //---Uploading picture
         $("#uploadPicture").uploadFromClasspath("111.jpg");
     }
@@ -64,20 +56,16 @@ public class FormDemoqa {
         $(".react-datepicker__month-select").selectOption(monthOfBirth);
         $(".react-datepicker__year-select").selectOption(yearOfBirth);
         $(".react-datepicker__day--0" + dayOfBirth).click();
-
     }
 
     public void submitForm() {
         $("#submit").click();
     }
 
-
     public void checkFormData() {
-
         //---Checking the data in the modal form
         $(".modal-content").shouldHave(
-
-                text(firstName + lastName),
+                text(firstName + " " + lastName),
                 text(email),
                 text("Male"),
                 text(userNumber),
@@ -89,8 +77,5 @@ public class FormDemoqa {
                 text(state + " " + city));
         $("#closeLargeModal").click();
         $(".modal-content").shouldNotBe(visible);
-
     }
-
 }
-

@@ -1,4 +1,4 @@
-package tests.chain;
+package tests.pageobjects.chain;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static utils.RandomUtils.*;
 
-public class FormDemoqa {
+public class FormDemoqaPage {
     String firstName = getRandomString(8),
             lastName = getRandomString(10),
             email = getRandomEmail(),
@@ -21,15 +21,13 @@ public class FormDemoqa {
             state = "Rajasthan",
             city = "Jaiselmer";
 
-    public FormDemoqa openPage() {
-        //---Open the page
+    public FormDemoqaPage openPage() {
         open("https://demoqa.com/automation-practice-form");
 
         return this;
-
     }
 
-    public FormDemoqa fillInForm() {
+    public FormDemoqaPage fillInForm() {
         //---Data input
         $("#firstName").val(firstName);
         $("#lastName").val(lastName);
@@ -49,36 +47,30 @@ public class FormDemoqa {
         $(byText(state)).click();
         $("#city").click();
         $(byText(city)).click();
-
         //---Uploading picture
         $("#uploadPicture").uploadFromClasspath("111.jpg");
 
         return this;
     }
 
-    public FormDemoqa birthData() {
+    public FormDemoqaPage birthData() {
         $("#dateOfBirthInput").clear();
         $(".react-datepicker__month-select").selectOption(monthOfBirth);
         $(".react-datepicker__year-select").selectOption(yearOfBirth);
         $(".react-datepicker__day--0" + dayOfBirth).click();
 
         return this;
-
     }
 
-    public FormDemoqa submitForm() {
-
+    public FormDemoqaPage submitForm() {
         $("#submit").click();
 
         return this;
     }
 
-
-    public FormDemoqa checkFormData() {
-
+    public FormDemoqaPage checkFormData() {
         //---Checking the data in the modal form
         $(".modal-content").shouldHave(
-
                 text(firstName + " " + lastName),
                 text(email),
                 text("Male"),
@@ -93,8 +85,5 @@ public class FormDemoqa {
         $(".modal-content").shouldNotBe(visible);
 
         return this;
-
     }
-
 }
-
