@@ -1,4 +1,4 @@
-package tests.pageobjects.chain;
+package tests.pageobjects.chain.pages;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;

@@ -1,4 +1,4 @@
-package tests.pageobjects.scenarios;
+package tests.pageobjects.scenarios.pages;
 
 import com.github.javafaker.Faker;
 
